@@ -58,7 +58,7 @@ export default async function Home() {
 						<p>Price : {setPrice(val.price)}</p>
 						<button className=' bg-green-600 rounded-full p-2 box-content text-white'>
 							<Link
-								href={`https://wa.me/62895330148034?text=Saya%20mau%20order%20${val.title}`}>
+								href={`https://wa.me/62895330148034?text=Saya%20mau%20order%20${val.title}%0Ahttps://sample-eosin.vercel.app/about/${val.id}`}>
 								order to whatsapp
 							</Link>
 						</button>
