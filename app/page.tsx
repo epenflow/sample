@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { type } from 'os';
 import { Metadata } from 'next';
-export const metadat: Metadata = {
+export const metadata: Metadata = {
 	title: 'home',
 };
 async function getProduct() {
