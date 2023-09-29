@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { type } from 'os';
-
+import { Metadata } from 'next';
+export const metadat: Metadata = {
+	title: 'home',
+};
 async function getProduct() {
 	const res = await fetch('https://dummyjson.com/products/');
 

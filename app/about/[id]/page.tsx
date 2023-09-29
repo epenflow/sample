@@ -1,6 +1,22 @@
 import { IProduct } from '@/app/page';
 import { Metadata } from 'next';
-
+export async function generateMetadata({
+	params,
+}: {
+	params: { id: string };
+}): Promise<Metadata> {
+	const res = await fetch(`https://dummyjson.com/products/${params.id}`);
+	const data: IProduct = await res.json();
+	return {
+		title: data.title,
+		openGraph: {
+			title: data.title,
+			images: data.images,
+			description: data.description,
+			url: `https://dummyjson.com/products/${params.id}`,
+		},
+	};
+}
 async function getId(id: string) {
 	const res = await fetch(`https://dummyjson.com/products/${id}`);
 
@@ -9,25 +25,28 @@ async function getId(id: string) {
 	}
 	return res.json();
 }
+
 export default async function AboutId({ params }: { params: { id: string } }) {
 	const getData: IProduct = await getId(params.id);
-	console.info(getData);
+
 	return (
-		<main className='flex justify-center'>
-			<div className='w-1/2 bg-gray-400 p-2'>
-				<h1>{getData.title}</h1>
-				<div className='flex flex-wrap flex-row gap-2 w-full justify-center'>
-					{getData.images.map((val, index) => (
-						<img
-							src={val}
-							alt={getData.title}
-							key={index}
-							className='h-[240px] w-[240px] object-contain'
-						/>
-					))}
+		<>
+			<main className='flex justify-center'>
+				<div className='w-1/2 bg-gray-400 p-2'>
+					<h1>{getData.title}</h1>
+					<div className='flex flex-wrap flex-row gap-2 w-full justify-center'>
+						{getData.images.map((val, index) => (
+							<img
+								src={val}
+								alt={getData.title}
+								key={index}
+								className='h-[240px] w-[240px] object-contain'
+							/>
+						))}
+					</div>
+					<p>{getData.description}</p>
 				</div>
-				<p>{getData.description}</p>
-			</div>
-		</main>
+			</main>
+		</>
 	);
 }
