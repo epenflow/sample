@@ -10,7 +10,7 @@ async function getProduct() {
 	}
 	return res.json();
 }
-interface IProduct {
+export interface IProduct {
 	id: number;
 	title: string;
 	description: string;
@@ -56,6 +56,12 @@ export default async function Home() {
 						/>
 
 						<p>Price : {setPrice(val.price)}</p>
+						<button className=' bg-green-600 rounded-full p-2 box-content text-white'>
+							<Link
+								href={`https://wa.me/62895330148034?text=Saya%20mau%20order%20${val.title}`}>
+								order to whatsapp
+							</Link>
+						</button>
 					</section>
 				))}
 			</div>
